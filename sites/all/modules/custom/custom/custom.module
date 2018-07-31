@@ -1,0 +1,273 @@
+<?php
+/**
+ * @file
+ * Provides custom functionality for site.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function custom_menu() {
+  $items = [];
+
+  $items['home'] = [
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['home_form'],
+    'access callback' => TRUE,
+  ];
+  $items['offer/add'] = [
+    'title' => t('Add offer'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['custom_offer_form'],
+    'access arguments' => ['create offer content'],
+    'file' => 'custom.offer.inc',
+  ];
+  $items['offer/%node/view'] = [
+    'title' => t('View offer'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'custom_offer_view',
+    'page arguments' => [1],
+    'access arguments' => ['access content'],
+    'file' => 'custom.offer.inc',
+  ];
+  $items['offer/%node/edit'] = [
+    'title' => t('Edit offer'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['custom_offer_form', 1],
+    'access arguments' => [1, 2],
+    'access callback' => 'custom_offer_access',
+    'file' => 'custom.offer.inc',
+  ];
+  $items['offer/%node/delete'] = [
+    'title' => t('Delete offer'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['custom_offer_delete_form', 1],
+    'access arguments' => [1, 2],
+    'access callback' => 'custom_offer_access',
+    'file' => 'custom.offer.inc',
+  ];
+  $items['admin-menu/manage-categories'] = [
+    'title' => t('Manage categories'),
+    'menu_name' => 'menu-admin-menu',
+    'page callback' => 'custom_manage_categories_page',
+    'access arguments' => ['manage categories'],
+    'file' => 'custom.manage_categories.inc',
+  ];
+  $items['admin-menu/manage-users'] = [
+    'title' => t('Manage users'),
+    'menu_name' => 'menu-admin-menu',
+    'page callback' => 'custom_manage_users_page',
+    'access arguments' => ['manage users'],
+    'file' => 'custom.manage_users.inc',
+  ];
+  $items['admin-menu/manage-users/add'] = [
+    'title' => t('Add user'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['custom_add_user_form'],
+    'access arguments' => ['manage users'],
+    'file' => 'custom.manage_users.inc',
+  ];
+  $items['admin-menu/manage-users/%user'] = [
+    'title' => t('Manage user'),
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['custom_manage_user_form', 2],
+    'access arguments' => ['manage users'],
+    'file' => 'custom.manage_users.inc',
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function custom_permission() {
+  return [
+    'edit advertisement' => [
+      'title' => t('Edit advertisement on homepage'),
+    ],
+    'manage categories' => [
+      'title' => t('Access to manage categories'),
+    ],
+    'manage users' => [
+      'title' => t('Access to manage users'),
+    ],
+  ];
+}
+
+/**
+ * Home page content.
+ */
+function home_form($form, &$form_state) {
+  // Show page content for authorized users only.
+  if (user_is_logged_in()) {
+    // WYSIWYG field for write some advertisement.
+    if (user_access('edit advertisement')) {
+      $form['wrapper'] = [
+        '#type' => 'fieldset',
+        '#title' => t('Edit advertisement'),
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+      ];
+      $form['wrapper']['advertisement'] = [
+        '#type' => 'text_format',
+        '#format' => 'advanced',
+        '#default_value' => variable_get('advertisement')['value'],
+        '#rows' => 15,
+        '#after_build' => ['custom_hide_text_format_selector'],
+      ];
+      $form['wrapper']['submit'] = [
+        '#type' => 'submit',
+        '#value' => t('Save'),
+      ];
+    }
+
+    $form['advertisement_view'] = [
+      '#type' => 'item',
+      '#markup' => variable_get('advertisement')['value'],
+    ];
+  }
+
+  return $form;
+}
+
+/**
+ * Homepage form submit.
+ */
+function home_form_submit($form, &$form_state) {
+  // Save to variable "advertisement" value.
+  variable_set('advertisement', $form_state['values']['advertisement']);
+}
+
+/**
+ * Hide unnecessary text format selector for text_format.
+ */
+function custom_hide_text_format_selector($form) {
+  $form['format']['#access'] = FALSE;
+
+  return $form;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function custom_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    // Manage categories page.
+    case 'taxonomy_overview_terms':
+      foreach ($form as &$item) {
+        if (is_array($item) && isset($item['edit'])) {
+          $item['edit']['#title'] = t('Actions');
+        }
+      }
+      break;
+
+    // Taxonomy term edit page.
+    case 'taxonomy_form_term':
+      // Hide unnecessary fields.
+      $form['description']['#access'] = FALSE;
+      $form['relations']['#access'] = FALSE;
+      // Add color to buttons.
+      $form['actions']['submit']['#attributes'] = [
+        'class' => ['success', 'radius'],
+      ];
+      $form['actions']['delete']['#attributes'] = [
+        'class' => ['alert', 'radius'],
+      ];
+
+      // Confirm deleting term.
+      if ($form['#theme'] === 'confirm_form') {
+        $form['actions']['submit']['#attributes'] = [
+          'class' => ['button', 'alert', 'radius'],
+        ];
+        $form['actions']['cancel']['#attributes'] = [
+          'class' => ['button', 'primary', 'radius'],
+        ];
+      }
+      break;
+
+    // Offer delete confirmation.
+    case 'custom_offer_delete_form':
+      $form['actions']['#attributes'] = [
+        'class' => ['actions'],
+      ];
+      $form['actions']['submit']['#attributes'] = [
+        'class' => ['button', 'alert', 'radius'],
+      ];
+      $form['actions']['cancel']['#attributes'] = [
+        'class' => ['button', 'secondary', 'radius'],
+      ];
+      break;
+  }
+}
+
+/**
+ * Access to node Offer CRUD.
+ */
+function custom_offer_access($node, $op) {
+  global $user;
+
+  switch ($op) {
+    case 'edit':
+      if (
+        user_access('edit any offer content') ||
+        $node->uid === $user->uid && user_access('edit own offer content')
+      ) {
+        return TRUE;
+      }
+      break;
+
+    case 'delete':
+      if (
+        user_access('delete any offer content') ||
+        $node->uid === $user->uid && user_access('delete own offer content')
+      ) {
+        return TRUE;
+      }
+      break;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Implements hook_menu_breadcrumb_alter().
+ */
+function custom_menu_breadcrumb_alter(&$active_trail, $item) {
+  // Add breadcrumbs for Offer CRUD pages.
+  if ($item['map'][0] == 'offer') {
+    $tid = isset($_GET['tid']) ? $_GET['tid'] : FALSE;
+
+    $new = [];
+
+    // Load closer taxonomy "Category" and create breadcrumb.
+    if ($term = taxonomy_term_load($tid)) {
+      // If term has parent create breadcrumb for it.
+      if ($term_parent = taxonomy_get_parents($tid)) {
+        $term_parent = end($term_parent);
+        $new[] = [
+          'title' => $term_parent->name,
+          'href' => 'taxonomy/term/' . $term_parent->tid,
+          'localized_options' => [],
+        ];
+      }
+      // Closer category breadcrumb.
+      $new[] = [
+        'title' => $term->name,
+        'href' => 'taxonomy/term/' . $term->tid,
+        'localized_options' => [],
+      ];
+    }
+
+    // Unset not necessary offer's breadcrumb.
+    unset($active_trail[1]);
+
+    // Update breadcrumbs array.
+    $active_trail = array_merge($active_trail, $new);
+  }
+}
