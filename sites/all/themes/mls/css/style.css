@@ -1,0 +1,158 @@
+a:focus {
+  outline: none;
+}
+/* Main menu. */
+.top-bar {
+  /*border-bottom: 1px solid;*/
+}
+/* Offers overview page. */
+.page-taxonomy-term .row.l-main {
+  max-width: inherit;
+}
+.view-taxonomy-category table {
+  width: 100%;
+}
+.view-taxonomy-category table td {
+  min-width: 120px;
+}
+.add-offer-wrapper {
+  margin-bottom: 30px;
+}
+.add-offer-wrapper a {
+  padding-left: 15px;
+  background: transparent url(/themes/seven/images/add.png) no-repeat 0 center;
+  line-height: 30px;
+  font-weight: bold;
+}
+.view-taxonomy-category table .offer-operations a.button {
+  padding: 0.3em 1em;
+  display: block;
+}
+.view-taxonomy-category table .offer-operations a:last-child {
+  margin-bottom: 0;
+}
+/* Offer view. */
+.page-offer-view .field-type-image img:hover {
+  opacity: .8;
+}
+.page-offer-view .body {
+  margin-top: 1em;
+}
+/* Color box. */
+#cboxWrapper #cboxClose {
+  top: 0;
+}
+/* Offer form. (add/edit) */
+.custom-offer-form label {
+  font-weight: bold;
+}
+.custom-offer-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.custom-offer-form fieldset .fieldset-legend {
+  font-size: 0.875rem;
+  color: #4d4d4d;
+  cursor: pointer;
+  display: block;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.custom-offer-form fieldset .form-type-managed-file {
+  margin: 0;
+}
+.custom-offer-form fieldset .form-type-managed-file .description {
+  display: none;
+}
+.custom-offer-form fieldset .form-managed-file .image-widget-data {
+  display: flex;
+  align-items: center;
+}
+/* Delete offer. */
+#custom-offer-delete-form .description {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#custom-offer-delete-form .button {
+  width: 50%;
+  float: left;
+}
+/* Admin menu. */
+.l-header-region {
+  max-width: 100%;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.l-header-region .columns {
+  padding: 0;
+}
+.block-menu-menu-admin-menu {
+  width: 100%;
+  height: 2.8125rem;
+  line-height: 2.8125rem;
+  background-color: green;
+}
+.block-menu-menu-admin-menu ul {
+  margin: 0;
+}
+.block-menu-menu-admin-menu li {
+  list-style: none;
+  display: list-item;
+  float: left;
+  border-right: 1px solid #333;
+}
+.block-menu-menu-admin-menu li a {
+  color: #fff;
+  font-size: 0.8125rem;
+  padding: 0.9375rem;
+  line-height: 2.8125rem;
+}
+/* Manage categories page. */
+#custom-manage-add-category-form > div {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+#custom-manage-add-category-form .form-item-add-term {
+  margin: 0;
+}
+#custom-manage-add-category-form button {
+  margin-left: 30px;
+  margin-bottom: 16px;
+  padding: 11px 30px;
+  font-size: .8rem;
+}
+.tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+#taxonomy-overview-terms table {
+  width: 100%;
+}
+/* Table drag. */
+.draggable a.tabledrag-handle {
+  height: 16px;
+}
+a.tabledrag-handle .handle {
+  width: 22px;
+  height: 22px;
+}
+/* Manage accounts. */
+.create-account a {
+  padding-left: 15px;
+  background: transparent url(/themes/seven/images/add.png) no-repeat 0 center;
+  line-height: 30px;
+  font-weight: bold;
+}
+.manage-accounts-table {
+  width: 100%;
+}
+/* @media */
+@media only screen and (min-width: 40.063em) {
+  /* Main menu. */
+  .top-bar-section ul li {
+    float: left;
+    border-right: 1px solid #000;
+  }
+}
