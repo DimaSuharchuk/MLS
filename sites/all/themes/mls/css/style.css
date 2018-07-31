@@ -1,9 +1,55 @@
+body {
+  background: #ddd;
+}
 a:focus {
   outline: none;
 }
 /* Main menu. */
-.top-bar {
-  /*border-bottom: 1px solid;*/
+.top-bar-section ul li > a {
+  font-size: 1.3em;
+}
+/* Admin menu. */
+.l-header-region {
+  max-width: 100%;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.l-header-region .columns {
+  padding: 0;
+}
+.block-menu-menu-admin-menu {
+  width: 100%;
+  height: 2.8125rem;
+  line-height: 2.8125rem;
+  background-color: green;
+}
+.block-menu-menu-admin-menu ul {
+  margin: 0;
+}
+.block-menu-menu-admin-menu li {
+  list-style: none;
+  display: list-item;
+  float: left;
+  border-right: 1px solid #333;
+}
+.block-menu-menu-admin-menu li a {
+  color: #fff;
+  font-size: 1.3em;
+  padding: 0.9375rem;
+  line-height: 2.8125rem;
+}
+/* Site header. */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-header img {
+  height: 80px;
+  margin-right: 30px;
+}
+.site-header h1 {
+  margin: 0;
 }
 /* Offers overview page. */
 .page-taxonomy-term .row.l-main {
@@ -78,36 +124,6 @@ a:focus {
 #custom-offer-delete-form .button {
   width: 50%;
   float: left;
-}
-/* Admin menu. */
-.l-header-region {
-  max-width: 100%;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-}
-.l-header-region .columns {
-  padding: 0;
-}
-.block-menu-menu-admin-menu {
-  width: 100%;
-  height: 2.8125rem;
-  line-height: 2.8125rem;
-  background-color: green;
-}
-.block-menu-menu-admin-menu ul {
-  margin: 0;
-}
-.block-menu-menu-admin-menu li {
-  list-style: none;
-  display: list-item;
-  float: left;
-  border-right: 1px solid #333;
-}
-.block-menu-menu-admin-menu li a {
-  color: #fff;
-  font-size: 0.8125rem;
-  padding: 0.9375rem;
-  line-height: 2.8125rem;
 }
 /* Manage categories page. */
 #custom-manage-add-category-form > div {

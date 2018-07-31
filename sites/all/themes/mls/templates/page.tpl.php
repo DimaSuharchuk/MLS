@@ -90,6 +90,11 @@
     </header>
     <!--/.l-header -->
 
+    <div class="site-header">
+        <img src="/sites/all/themes/mls/images/emblem.png"/>
+        <h1><?php print t('MLS Bila Tserkva'); ?></h1>
+    </div>
+
   <?php if (!empty($page['featured'])): ?>
       <!--.l-featured -->
       <section class="l-featured row">
