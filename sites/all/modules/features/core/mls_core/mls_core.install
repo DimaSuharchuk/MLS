@@ -1,0 +1,66 @@
+<?php
+/**
+ * @file
+ *
+ * Site configs and updates.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function mls_core_install() {
+  _mls_theme_enable();
+  _update_global_variables();
+  // Remove orphaned actions.
+  actions_synchronize(TRUE);
+  // Add roles.
+  foreach ([USER_ROLE_ADMINISTRATOR, USER_ROLE_MODERATOR] as $value) {
+    $role = new stdClass();
+    $role->name = $value;
+    user_role_save($role);
+  }
+  //  user_role_grant_permissions($translator->rid, [  ]);
+  // Add ukrainian language.
+//  locale_add_language('ua');
+}
+
+/**
+ * Helper function for custom theme enabling.
+ */
+function _mls_theme_enable() {
+  theme_enable(['mls']);
+  variable_set('theme_default', 'mls');
+  // Admin theme.
+  variable_set('admin_theme', 'seven');
+
+  // Set favicon.
+  //  $theme_movies_settings = variable_get('theme_mls_settings');
+  //  $theme_movies_settings['toggle_favicon'] = TRUE;
+  //  $theme_movies_settings['default_favicon'] = FALSE;
+  //  $theme_movies_settings['favicon_path'] = 'sites/all/themes/movies/images/icon.png';
+  //  variable_set('theme_movies_settings', $theme_movies_settings);
+
+  // Disable unnecessary theme.
+  theme_disable(['bartik']);
+}
+
+/**
+ * Helper function for setting global variables.
+ */
+function _update_global_variables() {
+  // Remove default home link.
+  menu_link_delete(NULL, '<front>');
+  // Set frontpage path.
+  variable_set('site_frontpage', 'home');
+  // Account settings.
+  variable_set('user_register', 0);
+  variable_set('user_pictures', FALSE);
+  variable_set('user_email_verification', FALSE);
+  // Locale.
+  variable_set('configurable_timezones', FALSE);
+  variable_set('date_first_day', '1');
+  // Pathauto.
+  variable_set('pathauto_taxonomy_term_pattern', '[term:parent]/[term:name]');
+  variable_set('pathauto_transliterate', 1);
+  // Locale and language settings.
+}

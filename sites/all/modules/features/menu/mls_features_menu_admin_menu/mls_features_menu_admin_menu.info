@@ -1,0 +1,7 @@
+name = MLS Features: Menu: Admin menu
+core = 7.x
+package = Features: MLS
+dependencies[] = features
+dependencies[] = menu
+features[features_api][] = api:2
+features[menu_custom][] = menu-admin-menu

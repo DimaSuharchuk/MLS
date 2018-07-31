@@ -1,0 +1,52 @@
+<?php
+/**
+ * @file
+ *
+ * Module's main file.
+ */
+
+/**
+ * Defines user role "Administrator".
+ */
+define('USER_ROLE_ADMINISTRATOR', 'MLS Administrator');
+/**
+ * Defines user role "Moderator".
+ */
+define('USER_ROLE_MODERATOR', 'Moderator');
+
+/**
+ * Implements hook_menu_alter().
+ */
+function mls_core_menu_alter(&$items) {
+  // Hide action tabs.
+  $items['taxonomy/term/%taxonomy_term/edit']['type'] = MENU_CALLBACK;
+}
+
+/**
+ * Implements hook_translated_menu_link_alter().
+ */
+function mls_core_translated_menu_link_alter(&$item, $map) {
+  // Hide menu link "My account".
+  if (in_array('user', $map)) {
+    $item['access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_block_info_alter().
+ */
+function mls_core_block_info_alter(&$blocks, $theme, $code_blocks) {
+  $blocks['system']['help']['status'] = FALSE;
+  $blocks['system']['navigation']['status'] = FALSE;
+  $blocks['system']['management']['status'] = FALSE;
+  $blocks['user']['login']['region'] = 'content';
+  $blocks['menu']['menu-admin-menu']['status'] = TRUE;
+  $blocks['menu']['menu-admin-menu']['region'] = 'header';
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function mls_core_mail_alter(&$message) {
+  $message['send'] = FALSE;
+}

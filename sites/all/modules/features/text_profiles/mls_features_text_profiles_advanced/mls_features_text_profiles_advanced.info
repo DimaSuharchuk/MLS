@@ -1,0 +1,10 @@
+name = MLS Features: Text profiles: Advanced
+core = 7.x
+package = Features: MLS
+dependencies[] = ckeditor
+dependencies[] = features
+dependencies[] = filter
+features[ckeditor_profile][] = Advanced
+features[features_api][] = api:2
+features[filter][] = advanced
+features[user_permission][] = use text format advanced

@@ -1,0 +1,36 @@
+name = Vlasnyk MLS core
+description = Feature for install, configure site and enabling modules automatically.
+core = 7.x
+package = ACore
+
+; Contrib modules.
+dependencies[] = admin_menu
+dependencies[] = adminimal_admin_menu
+dependencies[] = ckeditor
+dependencies[] = features
+dependencies[] = jquery_update
+dependencies[] = i18n
+dependencies[] = menu
+dependencies[] = pathauto
+dependencies[] = taxonomy
+dependencies[] = taxonomy_menu
+dependencies[] = transliteration
+dependencies[] = views
+dependencies[] = uuid_features
+; Contrib modules disabled for production.
+;dependencies[] = devel
+;dependencies[] = diff
+;dependencies[] = module_filter
+;dependencies[] = views_ui
+
+; Custom modules.
+dependencies[] = custom
+
+; Features
+dependencies[] = mls_features_ct_offer
+dependencies[] = mls_features_language_ukrainian
+dependencies[] = mls_features_menu_admin_menu
+dependencies[] = mls_features_permissions
+dependencies[] = mls_features_taxonomy_categories
+dependencies[] = mls_features_text_profiles_advanced
+dependencies[] = mls_features_views_taxonomy_category

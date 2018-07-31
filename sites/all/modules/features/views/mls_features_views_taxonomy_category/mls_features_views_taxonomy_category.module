@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MLS Features: Views: Taxonomy Category feature.
+ */
+
+include_once 'mls_features_views_taxonomy_category.features.inc';
