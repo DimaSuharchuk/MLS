@@ -19,9 +19,6 @@ function mls_core_install() {
     $role->name = $value;
     user_role_save($role);
   }
-  //  user_role_grant_permissions($translator->rid, [  ]);
-  // Add ukrainian language.
-//  locale_add_language('ua');
 }
 
 /**
@@ -62,5 +59,7 @@ function _update_global_variables() {
   // Pathauto.
   variable_set('pathauto_taxonomy_term_pattern', '[term:parent]/[term:name]');
   variable_set('pathauto_transliterate', 1);
+  // Colorbox.
+  variable_set('colorbox_mobile_detect', 0);
   // Locale and language settings.
 }

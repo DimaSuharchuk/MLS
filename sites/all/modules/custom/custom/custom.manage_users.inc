@@ -76,11 +76,18 @@ function custom_manage_users_page() {
       'operations' => [
         'data' => [
           '#type' => 'link',
-          '#title' => t('actions'),
+          '#title' => t('Actions'),
           '#href' => "admin-menu/manage-users/$account->uid",
         ],
       ],
     ];
+
+    // Set field labels to "table td" for mobile.
+    foreach ($rows[$account->uid] as $field => $row) {
+      if ($field !== 'operations') {
+        $rows[$account->uid][$field] = '<span class="mobile-label">' . $header[$field]['data'] . ': </span>' . $row;
+      }
+    }
   }
 
   $page['table'] = [

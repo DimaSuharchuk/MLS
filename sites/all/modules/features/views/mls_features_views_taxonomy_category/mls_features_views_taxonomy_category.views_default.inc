@@ -209,7 +209,7 @@ function mls_features_views_taxonomy_category_views_default_views() {
   $handler->display->display_options['fields']['field_pictures']['field'] = 'field_pictures';
   $handler->display->display_options['fields']['field_pictures']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_pictures']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'large',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_pictures']['delta_limit'] = '1';
