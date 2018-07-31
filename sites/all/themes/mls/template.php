@@ -43,7 +43,7 @@ function mls_preprocess_node(&$variables) {
  * @throws \Exception
  */
 function mls_preprocess_views_view(&$variables) {
-  if ($variables['name'] === 'taxonomy_term' && $variables['display_id'] === 'page') {
+  if ($variables['name'] === 'taxonomy_category' && $variables['display_id'] === 'page') {
     $tid = arg()[2];
     // Add link "add Offer" for "most" child taxonomy Category page overview.
     if (!taxonomy_get_children($tid)) {
