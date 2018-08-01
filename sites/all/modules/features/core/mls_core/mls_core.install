@@ -61,5 +61,7 @@ function _update_global_variables() {
   variable_set('pathauto_transliterate', 1);
   // Colorbox.
   variable_set('colorbox_mobile_detect', 0);
+  // Node "Offer".
+  variable_set('node_submitted_offer', 0);
   // Locale and language settings.
 }
