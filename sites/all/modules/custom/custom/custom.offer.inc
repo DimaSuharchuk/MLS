@@ -57,6 +57,14 @@ function custom_offer_form($form, &$form_state, $node = NULL) {
       'class' => ['button', 'success', 'radius'],
     ],
   ];
+  $form['actions']['cancel'] = [
+    '#type' => 'link',
+    '#title' => t('Cancel'),
+    '#href' => $tid ? "taxonomy/term/$tid" : '<front>',
+    '#attributes' => [
+      'class' => ['button', 'secondary', 'radius'],
+    ],
+  ];
 
   $form['node'] = [
     '#type' => 'value',
