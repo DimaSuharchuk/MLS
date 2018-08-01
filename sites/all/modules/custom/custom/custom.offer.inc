@@ -22,6 +22,10 @@ function custom_offer_view($node = NULL) {
 function custom_offer_form($form, &$form_state, $node = NULL) {
   // Taxonomy term id used as destination for redirect.
   $tid = isset($_GET['tid']) ? $_GET['tid'] : FALSE;
+  if ($tid) {
+    ctools_include('object-cache');
+    ctools_object_cache_set('tid', 'offer_redirect', $tid);
+  }
 
   // Create node object if not node loaded.
   if (!$node) {
@@ -57,10 +61,6 @@ function custom_offer_form($form, &$form_state, $node = NULL) {
   $form['node'] = [
     '#type' => 'value',
     '#value' => $node,
-  ];
-  $form['tid'] = [
-    '#type' => 'value',
-    '#value' => $tid,
   ];
 
   $form['#attributes'] = [
@@ -98,8 +98,10 @@ function custom_offer_form_submit($form, &$form_state) {
   }
 
   // Redirect back to taxonomy term page.
-  $tid = $form_state['values']['tid'];
-  $form_state['redirect'] = "taxonomy/term/$tid";
+  ctools_include('object-cache');
+  $tid = ctools_object_cache_get('tid', 'offer_redirect');
+  ctools_object_cache_clear('tid', 'offer_redirect');
+  $form_state['redirect'] = $tid ? "taxonomy/term/$tid" : '<front>';
 }
 
 /**
