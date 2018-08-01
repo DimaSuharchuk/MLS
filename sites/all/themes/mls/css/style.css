@@ -51,6 +51,10 @@ a:focus {
 .site-header h1 {
   margin: 0;
 }
+/* Home page. */
+.page-home table {
+  width: 100% !important;
+}
 /* Offers overview page. */
 .page-taxonomy-term .row.l-main {
   max-width: inherit;
@@ -87,6 +91,9 @@ a:focus {
 }
 .page-offer-view .body {
   margin-top: 1em;
+}
+.page-offer-view table {
+  width: 100% !important;
 }
 /* Color box. */
 #cboxWrapper #cboxClose {
@@ -178,6 +185,7 @@ body.not-logged-in .block-user-login {
   border: 1px solid #333;
   border-radius: 10px;
   padding: 30px;
+  background: #eee;
 }
 /* @media */
 @media only screen and (min-width: 40.063em) {
@@ -190,6 +198,7 @@ body.not-logged-in .block-user-login {
 @media (max-width: 640px) {
   body.page-home table {
     width: 100% !important;
+    word-break: break-all;
   }
   /* Offers overview page. */
   .view-taxonomy-category table thead {
@@ -227,10 +236,30 @@ body.not-logged-in .block-user-login {
   /* Offer's field Body inner table. */
   .view-taxonomy-category .views-field-body table {
     width: 100% !important;
+    word-break: break-all;
   }
   .view-taxonomy-category .views-field-body table tr {
     display: table-row;
     margin: 0;
+  }
+  /* Offer view. */
+  .page-offer-view .field-type-image img {
+    width: 50%;
+  }
+  .page-offer-view table {
+    width: 100% !important;
+    word-break: break-all;
+  }
+  /* Color box. */
+  #cboxWrapper #cboxTitle {
+    display: none !important;
+  }
+  /* Offer form. (add/edit) */
+  .custom-offer-form table.tabledrag-processed {
+    /*width: 100%;*/
+  }
+  .custom-offer-form table.tabledrag-processed .image-widget-data a {
+    word-break: break-all;
   }
   /* Manage users. */
   .manage-accounts-table thead {
