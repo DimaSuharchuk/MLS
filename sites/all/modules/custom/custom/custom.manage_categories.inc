@@ -45,6 +45,11 @@ function custom_manage_add_category_form($form, &$form_state) {
     '#attributes' => [
       'class' => ['button', 'primary', 'radius'],
     ],
+    '#states' => [
+      'disabled' => [
+        'input[name=add_term]' => ['filled' => FALSE],
+      ],
+    ],
   ];
 
   return $form;
