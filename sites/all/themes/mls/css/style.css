@@ -171,6 +171,14 @@ a.tabledrag-handle .handle {
 .manage-accounts-table .mobile-label {
   display: none;
 }
+/* User login. */
+body.not-logged-in .block-user-login {
+  max-width: 300px;
+  margin: 30px auto;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 30px;
+}
 /* @media */
 @media only screen and (min-width: 40.063em) {
   /* Main menu. */
