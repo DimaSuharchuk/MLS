@@ -91,7 +91,9 @@
     <!--/.l-header -->
 
     <div class="site-header">
-        <img src="/sites/all/themes/mls/images/emblem.png"/>
+        <a href="<?php print $front_page; ?>">
+            <img src="/sites/all/themes/mls/images/emblem.png"/>
+        </a>
         <h1><?php print t('MLS Bila Tserkva'); ?></h1>
     </div>
 
