@@ -20,6 +20,18 @@ define('USER_ROLE_MODERATOR', 'Moderator');
 function mls_core_menu_alter(&$items) {
   // Hide action tabs.
   $items['taxonomy/term/%taxonomy_term/edit']['type'] = MENU_CALLBACK;
+  // Forbid to useless "Request new password" page.
+  $items['user/password']['access callback'] = FALSE;
+  // Give access to pages only to admin.
+  $paths = [
+    'user',
+    'user/%user',
+    'user/%user/view',
+    'user/%user/edit',
+  ];
+  foreach ($paths as $path) {
+    $items[$path]['access callback'] = '_mls_user_access';
+  }
 }
 
 /**
@@ -45,8 +57,28 @@ function mls_core_block_info_alter(&$blocks, $theme, $code_blocks) {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function mls_core_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'user_login_block':
+      // Hide links on login form.
+      unset($form['links']);
+      break;
+  }
+}
+
+/**
  * Implements hook_mail_alter().
  */
 function mls_core_mail_alter(&$message) {
   $message['send'] = FALSE;
+}
+
+/**
+ * Give access to admin only.
+ */
+function _mls_user_access() {
+  global $user;
+  return $user->uid == 1;
 }
