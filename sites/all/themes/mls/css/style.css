@@ -41,7 +41,7 @@ a:focus {
 /* Site header. */
 .site-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 .site-header img {
@@ -58,8 +58,8 @@ a:focus {
 .view-taxonomy-category table {
   width: 100%;
 }
-.view-taxonomy-category table td.views-field-field-pictures {
-  min-width: 120px;
+.view-taxonomy-category table td.views-field-field-pictures img {
+  max-width: 120px;
 }
 .add-offer-wrapper {
   margin-bottom: 30px;
@@ -76,6 +76,10 @@ a:focus {
 }
 .view-taxonomy-category table .offer-operations a:last-child {
   margin-bottom: 0;
+}
+/* Offer's field Body inner table. */
+.view-taxonomy-category .views-field-body table {
+  width: 100% !important;
 }
 /* Offer view. */
 .page-offer-view .field-type-image img:hover {
@@ -193,11 +197,9 @@ a.tabledrag-handle .handle {
   .view-taxonomy-category table tr:last-child {
     border-bottom: 2px solid #333;
   }
-  .view-taxonomy-category table td.views-field-field-pictures {
-    min-width: 100%;
-  }
-  .view-taxonomy-category table td img {
+  .view-taxonomy-category table td.views-field-field-pictures img {
     width: 100%;
+    max-width: none;
   }
   .view-taxonomy-category table td.views-field-title {
     font-weight: bold;
@@ -213,6 +215,14 @@ a.tabledrag-handle .handle {
   }
   .view-taxonomy-category table .offer-operations a:last-child {
     margin-bottom: auto;
+  }
+  /* Offer's field Body inner table. */
+  .view-taxonomy-category .views-field-body table {
+    width: 100% !important;
+  }
+  .view-taxonomy-category .views-field-body table tr {
+    display: table-row;
+    margin: 0;
   }
   /* Manage users. */
   .manage-accounts-table thead {
