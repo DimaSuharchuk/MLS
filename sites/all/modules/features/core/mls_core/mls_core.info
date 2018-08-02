@@ -30,6 +30,7 @@ dependencies[] = custom
 dependencies[] = mls_features_ct_offer
 dependencies[] = mls_features_language_ukrainian
 dependencies[] = mls_features_menu_admin_menu
+dependencies[] = mls_features_menu_main_menu
 dependencies[] = mls_features_permissions
 dependencies[] = mls_features_taxonomy_categories
 dependencies[] = mls_features_text_profiles_advanced

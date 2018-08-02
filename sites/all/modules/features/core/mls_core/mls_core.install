@@ -30,12 +30,14 @@ function _mls_theme_enable() {
   // Admin theme.
   variable_set('admin_theme', 'seven');
 
+  $theme_mls_settings = variable_get('theme_mls_settings');
+  // Disable tooltips.
+  $theme_mls_settings['zurb_foundation_tooltip_enable'] = FALSE;
   // Set favicon.
-  //  $theme_movies_settings = variable_get('theme_mls_settings');
-  //  $theme_movies_settings['toggle_favicon'] = TRUE;
-  //  $theme_movies_settings['default_favicon'] = FALSE;
-  //  $theme_movies_settings['favicon_path'] = 'sites/all/themes/movies/images/icon.png';
-  //  variable_set('theme_movies_settings', $theme_movies_settings);
+  $theme_mls_settings['toggle_favicon'] = TRUE;
+  $theme_mls_settings['default_favicon'] = FALSE;
+  $theme_mls_settings['favicon_path'] = 'sites/all/themes/mls/images/emblem.png';
+  variable_set('theme_mls_settings', $theme_mls_settings);
 
   // Disable unnecessary theme.
   theme_disable(['bartik']);
@@ -56,6 +58,9 @@ function _update_global_variables() {
   // Locale.
   variable_set('configurable_timezones', FALSE);
   variable_set('date_first_day', '1');
+  // Taxonomy menu.
+  variable_set('taxonomy_menu_vocab_menu_categories', 'main-menu');
+  variable_set('taxonomy_menu_sync_categories', TRUE);
   // Pathauto.
   variable_set('pathauto_taxonomy_term_pattern', '[term:parent]/[term:name]');
   variable_set('pathauto_transliterate', 1);
@@ -64,4 +69,5 @@ function _update_global_variables() {
   // Node "Offer".
   variable_set('node_submitted_offer', 0);
   // Locale and language settings.
+  variable_set('language_default', (object) ['language' => 'uk']);
 }
