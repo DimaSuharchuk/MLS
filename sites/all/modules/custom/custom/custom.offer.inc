@@ -47,6 +47,11 @@ function custom_offer_form($form, &$form_state, $node = NULL) {
   // Hide unnecessary text format selector.
   $form['body'][LANGUAGE_NONE][0]['#after_build'][] = 'custom_hide_text_format_selector';
 
+  // Translate fields title.
+  $form['body'][LANGUAGE_NONE][0]['#title'] = t($form['body'][LANGUAGE_NONE][0]['#title']);
+  $form['field_pictures'][LANGUAGE_NONE]['#title'] = t($form['field_pictures'][LANGUAGE_NONE]['#title']);
+  $form['field_category'][LANGUAGE_NONE]['#title'] = t($form['field_category'][LANGUAGE_NONE]['#title']);
+
   $form['actions'] = [
     '#type' => 'actions',
   ];
@@ -129,10 +134,10 @@ function custom_offer_delete_form($form, &$form_state, $node) {
 
   return confirm_form(
     $form,
-    t('Are you sure to remove offer "@title"?', ['@title' => $node->title]),
+    t('Are you sure you want to delete %title?', ['%title' => $node->title]),
     "taxonomy/term/$tid",
     '<h4 class="description">' . t('This action cannot be undone.') . '</h4>',
-    t('Remove'),
+    t('Delete'),
     t('Back')
   );
 }
