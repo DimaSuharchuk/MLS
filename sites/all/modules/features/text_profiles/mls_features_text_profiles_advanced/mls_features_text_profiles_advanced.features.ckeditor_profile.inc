@@ -14,7 +14,7 @@ function mls_features_text_profiles_advanced_ckeditor_profile_defaults() {
       'settings' => array(
         'ss' => 2,
         'toolbar' => '[
-    [\'Source\',\'Undo\',\'Redo\',\'Find\'],
+    [\'Undo\',\'Redo\',\'Find\'],
     [\'Image\',\'Enhanced Image\',\'Table\',\'HorizontalRule\',\'SpecialChar\'],
     [\'Maximize\',\'ShowBlocks\'],
     [\'RemoveFormat\'],
