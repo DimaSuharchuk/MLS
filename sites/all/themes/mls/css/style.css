@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 body {
   background: #ddd;
 }
@@ -31,6 +32,9 @@ a:focus {
   display: list-item;
   float: left;
   border-right: 1px solid #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .block-menu-menu-admin-menu li a {
   color: #fff;
@@ -80,6 +84,9 @@ a:focus {
 }
 .view-taxonomy-category table .offer-operations a:last-child {
   margin-bottom: 0;
+}
+.view-taxonomy-category table td.offer-operations a.button i {
+  vertical-align: middle;
 }
 /* Offer's field Body inner table. */
 .view-taxonomy-category .views-field-body table {
@@ -200,6 +207,22 @@ body.not-logged-in .block-user-login {
     width: 100% !important;
     word-break: break-all;
   }
+  /* Admin menu. */
+  .block-menu-menu-admin-menu li {
+    width: 50%;
+    color: #fff;
+  }
+  /* Site header. */
+  .site-header {
+    align-items: center;
+    justify-content: space-around;
+  }
+  .site-header img {
+    margin: 0;
+  }
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
   /* Offers overview page. */
   .view-taxonomy-category table thead {
     display: none;
@@ -207,7 +230,6 @@ body.not-logged-in .block-user-login {
   .view-taxonomy-category table tr {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     border: 1px solid #333;
     margin-bottom: -1px;
   }
@@ -228,7 +250,9 @@ body.not-logged-in .block-user-login {
     padding: 1em 0 0 0;
   }
   .view-taxonomy-category table td.offer-operations a.button {
+    font-family: inherit;
     margin-bottom: 12px;
+    min-width: 25%;
   }
   .view-taxonomy-category table .offer-operations a:last-child {
     margin-bottom: auto;
@@ -262,6 +286,9 @@ body.not-logged-in .block-user-login {
     word-break: break-all;
   }
   /* Manage users. */
+  .page-admin-menu-manage-users table.sticky-header {
+    display: none;
+  }
   .manage-accounts-table thead {
     display: none;
   }
@@ -271,7 +298,13 @@ body.not-logged-in .block-user-login {
   }
   .manage-accounts-table .mobile-label {
     display: inline-block;
-    width: 40%;
+    width: 50%;
     font-weight: bold;
+  }
+  /* Manage user. */
+  #custom-manage-user-form .button {
+    width: 50%;
+    float: left;
+    margin-bottom: 0;
   }
 }

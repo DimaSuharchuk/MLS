@@ -90,7 +90,7 @@
     </header>
     <!--/.l-header -->
 
-    <div class="site-header">
+    <div class="site-header column">
         <a href="<?php print $front_page; ?>">
             <img src="/sites/all/themes/mls/images/emblem.png"/>
         </a>
