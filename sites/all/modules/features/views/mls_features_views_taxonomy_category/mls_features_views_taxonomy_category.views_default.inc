@@ -249,7 +249,7 @@ function mls_features_views_taxonomy_category_views_default_views() {
   $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_2']['ui_name'] = 'offer_view';
   $handler->display->display_options['fields']['nothing_2']['label'] = 'Operations';
-  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<a href="/offer/[nid]/view?tid=[tid]" class="button primary radius">View</a>';
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<a href="/offer/[nid]/view?tid=[tid]" class="button primary radius"><i class="material-icons">visibility</i></a>';
   $handler->display->display_options['fields']['nothing_2']['element_class'] = 'offer-operations';
   $handler->display->display_options['fields']['nothing_2']['element_default_classes'] = FALSE;
   /* Field: Content: Edit link */
@@ -258,7 +258,7 @@ function mls_features_views_taxonomy_category_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
   $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['edit_node']['alter']['text'] = '<a href="/offer/[nid]/edit?tid=[tid]" class="button warning radius">Edit</a>';
+  $handler->display->display_options['fields']['edit_node']['alter']['text'] = '<a href="/offer/[nid]/edit?tid=[tid]" class="button warning radius"><i class="material-icons">create</i></a>';
   $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = TRUE;
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   /* Field: Content: Delete link */
@@ -267,7 +267,7 @@ function mls_features_views_taxonomy_category_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
   $handler->display->display_options['fields']['delete_node']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['delete_node']['alter']['text'] = '<a href="/offer/[nid]/delete?tid=[tid]" class="button alert radius">Delete</a>';
+  $handler->display->display_options['fields']['delete_node']['alter']['text'] = '<a href="/offer/[nid]/delete?tid=[tid]" class="button alert radius"><i class="material-icons">delete</i></a>';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['path'] = 'taxonomy/term/%';
   $translatables['taxonomy_category'] = array(
@@ -299,9 +299,6 @@ function mls_features_views_taxonomy_category_views_default_views() {
     t('Author'),
     t('Post date'),
     t('Operations'),
-    t('<a href="/offer/[nid]/view?tid=[tid]" class="button primary radius">View</a>'),
-    t('<a href="/offer/[nid]/edit?tid=[tid]" class="button warning radius">Edit</a>'),
-    t('<a href="/offer/[nid]/delete?tid=[tid]" class="button alert radius">Delete</a>'),
   );
   $export['taxonomy_category'] = $view;
 
