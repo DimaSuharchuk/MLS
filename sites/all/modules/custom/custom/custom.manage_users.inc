@@ -127,7 +127,7 @@ function custom_add_user_form($form, &$form_state) {
 
   $roles = user_roles(TRUE);
   // Remove unnecessary role.
-  unset($roles[array_search('authenticated user', $roles)]);
+  unset($roles[array_search(t('authenticated user'), $roles)]);
 
   $form['role'] = [
     '#type' => 'radios',
@@ -233,7 +233,7 @@ function custom_manage_user_form($form, &$form_state, $account) {
 
   $roles = user_roles(TRUE);
   // Remove unnecessary role.
-  unset($roles[array_search('authenticated user', $roles)]);
+  unset($roles[array_search(t('authenticated user'), $roles)]);
   // Get account role id except "authenticated user" role id.
   $account_rid = array_keys($account->roles)[1];
 
@@ -247,6 +247,9 @@ function custom_manage_user_form($form, &$form_state, $account) {
 
   $form['actions'] = [
     '#type' => 'actions',
+    '#attributes' => [
+      'class' => ['manage-user-actions'],
+    ],
   ];
   $form['actions']['save'] = [
     '#type' => 'submit',
@@ -296,6 +299,26 @@ function custom_manage_user_form($form, &$form_state, $account) {
   ];
 
   return $form;
+}
+
+/**
+ * Update account validation.
+ */
+function custom_manage_user_form_validate($form, &$form_state) {
+  // Check for available new user name before saving.
+  if ($form_state['triggering_element']['#name'] === 'save') {
+    $new_name = $form_state['values']['name'];
+    if ($form_state['values']['account']->name !== $new_name) {
+      if ((bool) db_select('users')
+        ->fields('users', ['uid'])
+        ->condition('name', db_like($new_name), 'LIKE')
+        ->range(0, 1)
+        ->execute()
+        ->fetchField()) {
+        form_set_error('name', t('The name %name is already taken.', ['%name' => $new_name]));
+      }
+    }
+  }
 }
 
 /**
